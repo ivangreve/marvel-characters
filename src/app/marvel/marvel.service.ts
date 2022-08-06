@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { plainToClass, plainToClassFromExist } from 'class-transformer';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -14,21 +15,28 @@ export class MarvelService {
   /** Marvel Api URL */
   private apiBase: string = environment.api.baseUrl;
   private authParams: string;
+  private params: string = '&offset=&nameStartsWith='
   private characters: string = ':apiBase' + '/characters' + ':authParams';
-  //private characters: string = `${this.apiBase}/characters${this.authParams}`;
+
+  private nameFilter: string = '';
 
   constructor(
     private http: HttpClient,
+    private route: ActivatedRoute,
   ) {
     this.authParams = this.generateAuthParams();
   }
 
-  public getCharacters(offset?: number): Observable<any> {
+  public getCharacters(offset?: number, nameFilter?: string): Observable<any> {
     let url = this.characters.replace(':apiBase', this.apiBase)
       .replace(':authParams', this.authParams);
 
     if (offset) {
-      url = url + '&offset=' + offset;
+      url += '&offset=' + offset;
+    }
+
+    if (nameFilter) {
+      url += '&nameStartsWith=' + nameFilter;
     }
 
     let stream = this.http.get(url);

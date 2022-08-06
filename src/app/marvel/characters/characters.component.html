@@ -1,27 +1,10 @@
-<!-- <ng-container *ngIf="characters">
-  <div class="container">
-    <span *ngFor="let character of characters" class="card">
-      <img
-        src="https://thumbs.dreamstime.com/b/marvel-logo-official-design-american-entertainment-company-179548774.jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div>
-        <div class="card-body">
-          <h5 class="card-title">{{ character.name }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">
-            {{ character.description }}
-          </h6>
-          <p class="card-text">{{ character.modified | date }}</p>
-          <a href="#" class="btn btn-primary">Edit</a>
-        </div>
-      </div>
-    </span>
-  </div>
-</ng-container> -->
-
 <div class="container mt-4">
+  <ng-template #noneCharacters>
+    No se ha encontrado ningún personaje!
+  </ng-template>
+
   <div
+    *ngIf="characters; else noneCharacters"
     class="search-results"
     infiniteScroll
     [infiniteScrollDistance]="2"
@@ -32,7 +15,7 @@
       <div *ngFor="let character of characters" class="col-auto mb-3">
         <div class="card" style="width: 18rem">
           <img
-            *ngIf="character.thumbnail?.path; else noImage"
+            *ngIf="character.thumbnail?.path"
             [src]="
               character.thumbnail.path + '.' + character.thumbnail.extension
             "
@@ -56,14 +39,6 @@
     </div>
   </div>
 </div>
-
-<ng-template #noImage>
-  <img
-    class="card-img-top"
-    alt="Card"
-    src="https://images.assetsdelivery.com/compings_v2/koblizeek/koblizeek1902/koblizeek190200055.jpg"
-  />
-</ng-template>
 
 <style>
   .card-img-top {
