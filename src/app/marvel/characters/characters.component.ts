@@ -11,30 +11,30 @@ import { MarvelService } from '../marvel.service';
   styleUrls: ['./characters.component.scss']
 })
 export class CharactersComponent implements OnInit {
+  @ViewChild('editCharacterModal') editCharacterModal: any;
 
 
-  public characters: Array<any>;
+  public characters: Array<Character>;
   public characterSelected: any;
   public nameFilter: string = '';
   public loading: boolean = false;
 
   public offset: number = 0;
-  throttle = 300;
-  scrollDistance = 1;
-  scrollUpDistance = 5;
+  public throttle: number = 300;
+  public scrollDistance: number = 1;
+  public scrollUpDistance: number = 5;
 
   constructor(private marvelService: MarvelService, private route: ActivatedRoute, private modalService: NgbModal) {
-    this.characters = new Array<any>();
+    this.characters = new Array<Character>();
     this.subscribeToQueryParams();
   }
 
   public subscribeToQueryParams() {
     this.route.queryParams.subscribe(params => {
       this.offset = 0;
-      this.characters = new Array<any>();
+      this.characters = new Array<Character>();
       this.nameFilter = params['nameStartsWith']
       this.onChangeFilters(this.offset, this.nameFilter);
-
     });
   }
 
@@ -60,7 +60,6 @@ export class CharactersComponent implements OnInit {
   }
 
   public onScrollDown() {
-    console.log('scrolled!!');
     console.log(this.offset);
     this.offset = this.offset + 20;
     this.fetchCharacters(this.offset, this.nameFilter)
@@ -68,13 +67,20 @@ export class CharactersComponent implements OnInit {
 
 
   public auxCharacter: any;
-  public editCharacter(content: any, character: any) {
+  public editCharacter(character: any) {
     this.characterSelected = character;
-    //this.auxCharacter = classToClassFromExist(this.characterSelected, this.auxCharacter);
-    this.modalService.open(content);
+    this.auxCharacter = classToClassFromExist(this.characterSelected, this.auxCharacter);
+    this.modalService.open(this.editCharacterModal);
   }
 
-  public onSave() {
-    this.characterSelected = this.auxCharacter;
+  public saveCharacter(character) {
+    classToClassFromExist(character, this.characterSelected);
+    this.closeEditModal();
+  }
+
+  public closeEditModal() {
+    this.modalService.dismissAll(this.editCharacterModal);
   }
 }
+
+

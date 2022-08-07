@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,6 +8,15 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditCharacterComponent implements OnInit {
   closeResult = '';
+
+  @Input()
+  public character;
+
+  @Output()
+  public close: EventEmitter<void> = new EventEmitter();
+
+  @Output()
+  public save: EventEmitter<any> = new EventEmitter();
 
   constructor(private modalService: NgbModal) { }
 
@@ -21,13 +30,12 @@ export class EditCharacterComponent implements OnInit {
   //   });
   // }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  public closeModal() {
+    debugger
+    this.close.emit();
+  }
+
+  public onSave() {
+    this.save.emit(this.character);
   }
 }

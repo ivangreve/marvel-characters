@@ -23,7 +23,7 @@ export class MarvelService {
   ) {
     this.authParams = this.generateAuthParams();
   }
-
+  O
   public getCharacters(offset?: number, nameFilter?: string): Observable<any> {
     let url = this.characters.replace(':apiBase', this.apiBase)
       .replace(':authParams', this.authParams);
@@ -38,6 +38,7 @@ export class MarvelService {
 
     let stream = this.http.get(url);
     return stream;
+
   }
 
   private generateAuthParams() {

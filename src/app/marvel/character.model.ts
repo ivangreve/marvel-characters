@@ -1,12 +1,12 @@
 import { Type } from "class-transformer"
 
 export class Character {
-  readonly id: number | undefined;
-  name?: string;
-  description?: string;
+  readonly id: number;
+  name: string;
+  description: string;
 
   @Type(() => Date)
-  modified?: Date
+  modified: Date;
 
   thumbnail: any
   resourceURI: any

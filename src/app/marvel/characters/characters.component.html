@@ -1,32 +1,18 @@
-<ng-template #editCharacterModal let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Edit Character</h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="d('Cross click')"
-    ></button>
-  </div>
-  <div class="modal-body">
-    <label for="input">Name</label>
-    <input
-      class="form-control"
-      style="margin-left: 10px; margin-right: 10px"
-      [(ngModel)]="auxCharacter.name"
-    />
-    <label for="input">Description</label>
-    <input
-      class="form-control mr-sm-2"
-      style="margin-left: 10px; margin-right: 10px"
-      [(ngModel)]="auxCharacter.description"
-    />
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="onSave()">
-      Save
-    </button>
-  </div>
+<ng-template #editCharacterModal>
+  <edit-character-modal
+    [character]="auxCharacter"
+    (close)="closeEditModal()"
+    (dismiss)="closeEditModal()"
+    (save)="saveCharacter($event)"
+  ></edit-character-modal>
+</ng-template>
+
+<ng-template #createCharacterModal>
+  <character-character
+    (close)="closeEditModal()"
+    (dismiss)="closeEditModal()"
+    (save)="saveCharacter($event)"
+  ></character-character>
 </ng-template>
 
 <loading-marvel *ngIf="loading"></loading-marvel>
@@ -67,9 +53,7 @@
             </p>
           </div>
           <div class="card-footer">
-            <a
-              (click)="editCharacter(editCharacterModal, character)"
-              class="btn btn-primary"
+            <a (click)="editCharacter(character)" class="btn btn-primary"
               >Edit</a
             >
           </div>
