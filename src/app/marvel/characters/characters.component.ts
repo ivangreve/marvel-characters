@@ -66,14 +66,14 @@ export class CharactersComponent implements OnInit {
   }
 
 
-  public auxCharacter: any;
-  public openEditCharacter(character: any) {
+  public auxCharacter: Character;
+  public openEditCharacter(character: Character) {
     this.characterSelected = character;
     this.auxCharacter = classToClassFromExist(this.characterSelected, this.auxCharacter);
     this.modalService.open(this.editCharacterModal);
   }
 
-  public saveCharacter(character) {
+  public saveCharacter(character: Character) {
     classToClassFromExist(character, this.characterSelected);
     this.closeEditModal();
   }
@@ -88,6 +88,12 @@ export class CharactersComponent implements OnInit {
 
   public createCharacter(newCharacter: Character) {
     debugger
+    const checkCharacterExist = this.characters.some(ch => ch.name === newCharacter.name)
+    if (checkCharacterExist) {
+      alert("El personaje ya existe!")
+      return
+    }
+
     this.characters = this.prepend(newCharacter, this.characters);
     this.closeCreateModal()
   }
