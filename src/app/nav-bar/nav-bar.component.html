@@ -1,23 +1,35 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img
-      src="./../../assets/img/marvel-logo.png"
-      style="height: 40px; margin: 5px"
-      alt="logo-marvel"
-    />
-  </a>
-
-  <ul class="navbar-nav">
-    <li class="nav-item active">
-      <input
-        class="form-control mr-sm-2"
-        style="margin-left: 10px; margin-right: 10px"
-        type="search"
-        placeholder="Search character"
-        [(ngModel)]="nameStartsWith"
-        aria-label="Search"
-        (ngModelChange)="filterByName()"
+  <span class="nav-flex">
+    <a class="navbar-brand" href="#">
+      <img
+        src="./../../assets/img/marvel-logo.png"
+        style="height: 40px; margin: 5px"
+        alt="logo-marvel"
       />
-    </li>
-  </ul>
+    </a>
+    <input
+      class="form-control search-input mr-sm-2"
+      type="search"
+      placeholder="Search character"
+      [(ngModel)]="nameStartsWith"
+      aria-label="Search"
+      (ngModelChange)="filterByName()"
+    />
+  </span>
 </nav>
+
+<style>
+  .nav-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    width: 100%;
+  }
+  .search-input {
+    height: 43px;
+    align-self: center;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+</style>

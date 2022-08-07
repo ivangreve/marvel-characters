@@ -1,6 +1,6 @@
 # Ejercicio 1
 
-``` javascript
+```javascript
 const isPrime = (number) => {
   if (number <= 0) return false;
   for (let i = 2; i < number; i++) {
@@ -21,22 +21,20 @@ const getPrimeNumberInARange = (a, b) => {
 };
 
 function main() {
-  console.log('Primes Numbers Between -11 and 97:');
+  console.log("Primes Numbers Between -11 and 97:");
   console.log(getPrimeNumberInARange(-11, 97));
 
-  console.log('Primes Numbers Between 1 and 10:');
+  console.log("Primes Numbers Between 1 and 10:");
   console.log(getPrimeNumberInARange(1, 10));
 
-  console.log('Primes Numbers Between 54 and 299:');
+  console.log("Primes Numbers Between 54 and 299:");
   console.log(getPrimeNumberInARange(54, 299));
 }
 
 main();
-
 ```
 
 [Ejercicio1.js](Ej1/PrimeNumbers.js)
-
 
 <a href="https://stackblitz.com/edit/js-pjbzxt?file=index.js">
   <img
@@ -45,36 +43,36 @@ main();
   />
 </a>
 
+---
 
-------------------------------------
 # Ejercicio 2
 
-``` javascript
+```javascript
 // Services
 let services = {
   1: {
-    carrier: 'CCH',
-    service: 'DEX',
+    carrier: "CCH",
+    service: "DEX",
   },
   2: {
-    carrier: 'CCH',
-    service: 'express',
+    carrier: "CCH",
+    service: "express",
   },
   3: {
-    carrier: 'CCH',
-    service: 'priority',
+    carrier: "CCH",
+    service: "priority",
   },
   15: {
-    carrier: 'CHP',
-    service: 'nextday',
+    carrier: "CHP",
+    service: "nextday",
   },
   16: {
-    carrier: 'CHP',
-    service: 'sameday',
+    carrier: "CHP",
+    service: "sameday",
   },
   17: {
-    carrier: 'CHP',
-    service: 'express',
+    carrier: "CHP",
+    service: "express",
   },
 };
 // Locations
@@ -152,7 +150,6 @@ let json = {
     ],
   },
 };
-
 
 const getMaxLimitObj = (lst) => {
   if (lst.lenght) return null;
@@ -244,23 +241,21 @@ function main() {
   let auxDic = cloneObj(json.data);
   filterDicByMaxLimit(auxDic);
   const result = joinServices(auxDic, services);
-  console.log('Result: ', result);
+  console.log("Result: ", result);
 
   let auxDic2 = cloneObj(json.data);
   locationName = locationWithMoreServices(auxDic2);
-  console.log('Location with more services:', locationName);
+  console.log("Location with more services:", locationName);
 
   let auxDic3 = cloneObj(json.data);
   serviceName = locationWithMoreCoverture(auxDic3);
-  console.log('Service with more coverture:', serviceName);
+  console.log("Service with more coverture:", serviceName);
 }
 
 main();
-
 ```
 
-[Ejercicio1.js](Ej2/Services.js)
-
+[Ejercicio2.js](Ej2/Services.js)
 
 <a href="https://stackblitz.com/edit/js-6n37s8?file=index.js">
   <img
@@ -269,7 +264,8 @@ main();
   />
 </a>
 
-------------------------------------
+---
+
 # Ejercicio 3
 
 # 🦾 Marvel Characters 🦸
@@ -277,12 +273,14 @@ main();
 **You can view this proyect in the folowing link [Firebase]**
 [Marvel Characters 🧪](https://marvel-front.web.app/#/characters)
 
-## Run Development 
+## Run Development
+
 1. Install dependencies: `npm install`
-2. Setup envs: 
+2. Setup envs:
    - Create enviroment.prod.ts and enviroment.ts
    - Add apikeys
-2. Run server
+3. Run server
+
 - `npm start`
 
 ## Used Technologies/Tools 🪛
@@ -291,4 +289,5 @@ main();
 - [Firebase](https://firebase.google.com/?hl=es-419&gclid=Cj0KCQjwxb2XBhDBARIsAOjDZ36FenpIxgp-Gwfm3ZArrBrIFC3WdpXncJwPiIUPGIXDo9PVr10qBO0aAgNmEALw_wcB&gclsrc=aw.ds)
 - [Infinite Scroll](https://www.npmjs.com/package/ngx-infinite-scroll)
 - [Ng Bootstrap](https://ng-bootstrap.github.io/#/home)
+
 ##

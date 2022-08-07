@@ -43,10 +43,8 @@ export class CharactersComponent implements OnInit {
   }
 
   public fetchCharacters(offset?: number, nameFilter?: string) {
-    this.loading = true;
     this.marvelService.getCharacters(offset, nameFilter).subscribe(response => {
       this.characters = this.characters.concat(response.data.results);
-      this.loading = false;
     })
   }
 
@@ -87,7 +85,6 @@ export class CharactersComponent implements OnInit {
   }
 
   public createCharacter(newCharacter: Character) {
-    debugger
     const checkCharacterExist = this.characters.some(ch => ch.name === newCharacter.name)
     if (checkCharacterExist) {
       alert("El personaje ya existe!")
