@@ -5,6 +5,7 @@ import { plainToClass, plainToClassFromExist } from 'class-transformer';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Md5 } from 'ts-md5/dist/md5';
+import { Character } from './character.model';
 
 
 @Injectable({
@@ -15,14 +16,10 @@ export class MarvelService {
   /** Marvel Api URL */
   private apiBase: string = environment.api.baseUrl;
   private authParams: string;
-  private params: string = '&offset=&nameStartsWith='
   private characters: string = ':apiBase' + '/characters' + ':authParams';
-
-  private nameFilter: string = '';
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute,
   ) {
     this.authParams = this.generateAuthParams();
   }

@@ -1,17 +1,52 @@
-<div class="container mt-4">
+<ng-template #editCharacterModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit Character</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <label for="input">Name</label>
+    <input
+      class="form-control"
+      style="margin-left: 10px; margin-right: 10px"
+      [(ngModel)]="auxCharacter.name"
+    />
+    <label for="input">Description</label>
+    <input
+      class="form-control mr-sm-2"
+      style="margin-left: 10px; margin-right: 10px"
+      [(ngModel)]="auxCharacter.description"
+    />
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="onSave()">
+      Save
+    </button>
+  </div>
+</ng-template>
+
+<loading-marvel *ngIf="loading"></loading-marvel>
+
+<div *ngIf="!loading" class="container characters">
   <ng-template #noneCharacters>
-    No se ha encontrado ningún personaje!
+    <div class="alert alert-warning" role="alert">
+      No se encontró ningún personaje con ese nombre!
+    </div>
   </ng-template>
 
   <div
-    *ngIf="characters; else noneCharacters"
+    *ngIf="characters.length; else noneCharacters"
     class="search-results"
     infiniteScroll
     [infiniteScrollDistance]="2"
     [infiniteScrollThrottle]="50"
     (scrolled)="onScrollDown()"
   >
-    <div class="row">
+    <div class="row" style="justify-content: center">
       <div *ngFor="let character of characters" class="col-auto mb-3">
         <div class="card" style="width: 18rem">
           <img
@@ -32,7 +67,11 @@
             </p>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Edit</a>
+            <a
+              (click)="editCharacter(editCharacterModal, character)"
+              class="btn btn-primary"
+              >Edit</a
+            >
           </div>
         </div>
       </div>
