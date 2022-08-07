@@ -7,4 +7,13 @@
 .text-description {
   font-size: 27px;
   margin: 10px;
+  display: flex;
+  align-items: center;
+  min-height: 550px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  color: black;
+  z-index: 10000;
 }

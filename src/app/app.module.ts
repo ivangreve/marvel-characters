@@ -9,6 +9,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { environment } from 'src/environments/environment';
+
+
+// Initialize Firebase
+if (environment.firebaseConfig) {
+  const app = initializeApp(environment.firebaseConfig);
+  const analytics = getAnalytics(app);
+}
+
+
 @NgModule({
   declarations: [
     AppComponent,
