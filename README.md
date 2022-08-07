@@ -1,6 +1,6 @@
 # Ejercicio 1
 
-``` language javascript
+``` language js
 const isPrime = (number) => {
   if (number <= 0) return false;
   for (let i = 2; i < number; i++) {
@@ -44,6 +44,8 @@ main();
     alt="Open in StackBlitz"
   />
 </a>
+
+
 ------------------------------------
 # Ejercicio 2
 
