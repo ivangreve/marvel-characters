@@ -1,13 +1,25 @@
+# Ejercicio 1
+
+
+------------------------------------
+# Ejercicio 2
+
+
+------------------------------------
+# Ejercicio 3
+
 # 🦾 Marvel Characters 🦸
 
-**You can view this proyect in the folowing link**
+**You can view this proyect in the folowing link [Firebase]**
 [Marvel Characters 🧪](https://marvel-front.web.app/#/characters)
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
+## Run Development 
+1. Install dependencies: `npm install`
+2. Setup envs: 
+   - Create enviroment.prod.ts and enviroment.ts
+   - Add apikeys
+2. Run server
+- `npm start`
 
 ## Used Technologies/Tools 🪛
 
