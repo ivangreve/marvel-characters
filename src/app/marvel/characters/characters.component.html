@@ -8,16 +8,23 @@
 </ng-template>
 
 <ng-template #createCharacterModal>
-  <character-character
-    (close)="closeEditModal()"
-    (dismiss)="closeEditModal()"
-    (save)="saveCharacter($event)"
-  ></character-character>
+  <create-character
+    (close)="closeCreateModal()"
+    (dismiss)="closeCreateModal()"
+    (save)="createCharacter($event)"
+  ></create-character>
 </ng-template>
 
 <loading-marvel *ngIf="loading"></loading-marvel>
 
 <div *ngIf="!loading" class="container characters">
+  <button
+    (click)="openCreateCharacter()"
+    class="btn btn-outline-dark button-on-top"
+  >
+    + Create New Character
+  </button>
+
   <ng-template #noneCharacters>
     <div class="alert alert-warning" role="alert">
       No se encontró ningún personaje con ese nombre!
@@ -53,7 +60,7 @@
             </p>
           </div>
           <div class="card-footer">
-            <a (click)="editCharacter(character)" class="btn btn-primary"
+            <a (click)="openEditCharacter(character)" class="btn btn-primary"
               >Edit</a
             >
           </div>

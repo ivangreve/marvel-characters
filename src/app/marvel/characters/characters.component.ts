@@ -12,7 +12,7 @@ import { MarvelService } from '../marvel.service';
 })
 export class CharactersComponent implements OnInit {
   @ViewChild('editCharacterModal') editCharacterModal: any;
-
+  @ViewChild('createCharacterModal') createCharacterModal: any;
 
   public characters: Array<Character>;
   public characterSelected: any;
@@ -29,6 +29,10 @@ export class CharactersComponent implements OnInit {
     this.subscribeToQueryParams();
   }
 
+  ngOnInit(): void {
+    this.fetchCharacters(this.offset);
+  }
+
   public subscribeToQueryParams() {
     this.route.queryParams.subscribe(params => {
       this.offset = 0;
@@ -36,10 +40,6 @@ export class CharactersComponent implements OnInit {
       this.nameFilter = params['nameStartsWith']
       this.onChangeFilters(this.offset, this.nameFilter);
     });
-  }
-
-  ngOnInit(): void {
-    this.fetchCharacters(this.offset);
   }
 
   public fetchCharacters(offset?: number, nameFilter?: string) {
@@ -67,7 +67,7 @@ export class CharactersComponent implements OnInit {
 
 
   public auxCharacter: any;
-  public editCharacter(character: any) {
+  public openEditCharacter(character: any) {
     this.characterSelected = character;
     this.auxCharacter = classToClassFromExist(this.characterSelected, this.auxCharacter);
     this.modalService.open(this.editCharacterModal);
@@ -80,6 +80,26 @@ export class CharactersComponent implements OnInit {
 
   public closeEditModal() {
     this.modalService.dismissAll(this.editCharacterModal);
+  }
+
+  public openCreateCharacter() {
+    this.modalService.open(this.createCharacterModal);
+  }
+
+  public createCharacter(newCharacter: Character) {
+    debugger
+    this.characters = this.prepend(newCharacter, this.characters);
+    this.closeCreateModal()
+  }
+
+  public closeCreateModal() {
+    this.modalService.dismissAll(this.createCharacterModal);
+  }
+
+  private prepend(value, array) {
+    var newArray = array.slice();
+    newArray.unshift(value);
+    return newArray;
   }
 }
 

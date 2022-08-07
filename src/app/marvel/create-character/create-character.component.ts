@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Character } from '../character.model';
 
 @Component({
@@ -7,7 +6,14 @@ import { Character } from '../character.model';
   templateUrl: './create-character.component.html',
   styleUrls: ['./create-character.component.scss']
 })
-export class EditCharacterComponent implements OnInit {
+export class CreateCharacterComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.character = new Character()
+  }
+
   closeResult = '';
 
   public character: Character;
@@ -19,10 +25,6 @@ export class EditCharacterComponent implements OnInit {
   public save: EventEmitter<any> = new EventEmitter();
 
 
-  ngOnInit(): void {
-    this.character = new Character()
-  }
-
   public closeModal() {
     this.close.emit();
   }
@@ -30,4 +32,5 @@ export class EditCharacterComponent implements OnInit {
   public onSave() {
     this.save.emit(this.character);
   }
+
 }

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'edit-character-modal',
@@ -18,20 +17,11 @@ export class EditCharacterComponent implements OnInit {
   @Output()
   public save: EventEmitter<any> = new EventEmitter();
 
-  constructor(private modalService: NgbModal) { }
+  constructor() { }
 
   ngOnInit(): void { }
 
-  // open(content: any) {
-  //   this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-  //     this.closeResult = `Closed with: ${result}`;
-  //   }, (reason) => {
-  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  //   });
-  // }
-
   public closeModal() {
-    debugger
     this.close.emit();
   }
 

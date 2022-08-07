@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">Create Character</h4>
+  <h4 class="modal-title" id="modal-create">Create Character</h4>
   <button
     (click)="closeModal()"
     type="button"
@@ -10,16 +10,41 @@
 <div class="modal-body">
   <span>
     <label for="input">Name</label>
-    <input class="form-control" [(ngModel)]="character.name" />
+    <input
+      class="form-control"
+      placeholder="Name"
+      [(ngModel)]="character.name"
+    />
+  </span>
+
+  <span class="property">
+    <label for="input">Image URL</label>
+    <input
+      class="form-control"
+      placeholder="Source Image"
+      [(ngModel)]="character.thumbnail.path"
+    />
+    <input
+      class="form-control"
+      placeholder="Extension"
+      [(ngModel)]="character.thumbnail.extension"
+    />
   </span>
 
   <span>
     <label for="input">Description</label>
-    <input class="form-control mr-sm-2" [(ngModel)]="character.description" />
+    <textarea
+      class="form-control mr-sm-2"
+      [(ngModel)]="character.description"
+      placeholder="Description"
+      rows="4"
+      cols="50"
+    >
+    </textarea>
   </span>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="onSave()">
-    Save
+  <button type="button" class="btn btn-success" (click)="onSave()">
+    Create Character
   </button>
 </div>
